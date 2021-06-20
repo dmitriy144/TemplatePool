@@ -1,0 +1,24 @@
+<div ngbDropdown>
+  <button class="btn btn-outline-primary" ngbDropdownToggle>
+    {{ label }}
+  </button>
+  <div ngbDropdownMenu>
+    <button
+      *ngFor="let item of items"
+      ngbDropdownItem
+      (click)="itemClicked(item)"
+    >
+      <ng-container
+        *ngTemplateOutlet="
+          customItemTemplate || defaultItemTemplate;
+          context: { $implicit: item }
+        "
+      >
+      </ng-container>
+    </button>
+  </div>
+</div>
+
+<ng-template #defaultItemTemplate let-item>
+  {{ item.label }}
+</ng-template>
